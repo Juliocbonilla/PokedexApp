@@ -263,7 +263,7 @@ function capturePokemon(namePokemon, idPokemon){
     description: namePokemon
 };
 
-fetch('https://px5e6p3197.execute-api.us-east-1.amazonaws.com/tasks', {
+fetch('https://o812qzk497.execute-api.us-east-1.amazonaws.com/capturePokemon', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
