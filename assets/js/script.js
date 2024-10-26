@@ -259,11 +259,11 @@ function capturePokemon(namePokemon, idPokemon){
   console.log(`Pokemon capturado ${namePokemon} - ${idPokemon}`);
 
   const data = {
-    title: idPokemon,
-    description: namePokemon
+    idPokemon: idPokemon,
+    pokemonName: namePokemon
 };
 
-fetch('https://px5e6p3197.execute-api.us-east-1.amazonaws.com/tasks', {
+fetch('https://o812qzk497.execute-api.us-east-1.amazonaws.com/capturePokemon', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
