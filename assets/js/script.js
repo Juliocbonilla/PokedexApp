@@ -252,9 +252,6 @@ function searchPokemonType() {
 }
 
 
-
-
-
 function capturePokemon(namePokemon, idPokemon){
   console.log(`Pokemon capturado ${namePokemon} - ${idPokemon}`);
 
@@ -277,12 +274,62 @@ fetch('https://dastogzga5.execute-api.us-east-1.amazonaws.com/capturePokemon', {
     return response.json();
 })
 .then(data => {
+  alert('Se ha capturado el Pokemon')
     console.log(data)
 })
 .catch(error => {
     document.getElementById('output').innerHTML = `<p>Error: ${error.message}</p>`;
 });
 
+}
 
 
+$(document).ready(function() {
+  $("#get__button-type").click(function() {
+      fetchPokemons();
+  });
+});
+
+$(document).ready(function() {
+  $("#get__button-type").click(function() {
+      fetchPokemons();
+  });
+});
+
+function fetchPokemons() {
+  $.get("https://dastogzga5.execute-api.us-east-1.amazonaws.com/getPokemons", (response) => {
+      console.log(response); // Verifica la estructura de la respuesta
+
+      // Limpiar la tabla antes de llenar
+      $("#pokemonTable tbody").empty();
+
+      // Acceder a los Pokémon en el cuerpo de la respuesta
+      const pokemons = response.body.pokemons;
+
+      // Iterar sobre cada Pokémon en la respuesta
+      pokemons.forEach((pokemon) => {
+          const idPokemon = pokemon.idPokemon || "ID desconocido";
+          const namePokemon = pokemon.pokemonName || "Nombre desconocido";
+          const captureDate = pokemon.captureDate || "Fecha desconocida";
+
+          // Agregar fila a la tabla
+          $("#pokemonTable tbody").append(
+              `<tr>
+                  <td>${idPokemon}</td>
+                  <td>${namePokemon}</td>
+                  <td>${new Date(captureDate).toLocaleString()}</td>
+                  <td>
+                      <button class="btn btn-info" onclick="showModal('${idPokemon}', '${namePokemon}', '${captureDate}')">Ver Detalles</button>
+                  </td>
+              </tr>`
+          );
+      });
+  }).fail(function() {
+      console.error("Error al obtener los Pokémon");
+  });
+}
+
+function showModal(idPokemon, namePokemon, captureDate) {
+  // Aquí puedes crear el modal como lo hicimos antes o mostrar un alert
+  alert(`ID: ${idPokemon}\nNombre: ${namePokemon}\nFecha de Captura: ${captureDate}`);
 }

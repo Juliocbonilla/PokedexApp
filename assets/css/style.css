@@ -175,6 +175,19 @@ h5 {
   background: #034285;
   color: #ffffff;
 }
+.get__btn {
+  background: #0069d9;
+  border-radius: 24px !important;
+  padding: 11px 17px;
+  color: #ffffff;
+  position: absolute !important;
+  right: 10px;
+  z-index: 3 !important;
+}
+.get__btn:hover {
+  background: #034285;
+  color: #ffffff;
+}
 .search__icon-search {
   font-size: 1.5rem;
   color: #9e720a;
